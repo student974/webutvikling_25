@@ -1,0 +1,59 @@
+body {
+    /* Hva: Setter grunnleggende stil for hele siden. */
+    /* Hvordan: Fjerner standard marger og legger til litt padding rundt innholdet. */
+    /* Hvorfor: Sikrer at innholdet ikke klistrer seg til kantene av vinduet, noe som gir et bedre utseende. */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+main {
+    /* Hva: Setter bakgrunnsbildet til hovedseksjonen. */
+    /* Hvordan: Bruker et bilde fra 'sprites' katalogen, skalerer det slik at det passer innenfor containeren uten å bli strukket. */
+    /* Hvorfor: Gir siden en bakgrunn som passer til Super Mario temaet. */
+    background-image: url('../sprites/bakgrunn.jpg');
+    background-size: contain;
+    height: 500px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+
+#supermario {
+    /* Hva: Definerer stil og animasjoner for Super Mario figuren. */
+    /* Hvordan: Setter størrelse, posisjon og bakgrunnsbilde, samt flere animasjoner for å kontrollere hans bevegelse. */
+    /* Hvorfor: Gir Mario sin visuelle stil og definerer hvordan han beveger seg og reagerer på ulike hendelser i spillet. */
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 53px;
+    animation-name: runningMario, movingMario, marioDies;
+    animation-iteration-count: infinite, 1, 1;
+    animation-duration: 0.5s, 3s, 0.8s;
+    animation-fill-mode: none, forwards, forwards;
+    animation-delay: 0s, 0s, 3s;
+    z-index: 999;
+}
+
+#gompa {
+    /* Hva: Definerer stil og animasjoner for Gompa fienden. */
+    /* Hvordan: Angir størrelse, posisjon, og knytter den til animasjonene for bevegelse og bevegelse av bildesekvenser. */
+    /* Hvorfor: Gir Gompa en visuell stil og bevegelsesanimasjon for å gjøre den mer interaktiv i spillet. */
+    background-size: contain;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 53px;
+    right: 0;
+    animation-name: runningGompa, movingGompa;
+    animation-iteration-count: infinite, infinite;
+    animation-duration: 0.5s, 1s;
+    animation-direction: normal, alternate;
+}

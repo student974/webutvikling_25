@@ -1,0 +1,76 @@
+<!DOCTYPE html> <!-- Forteller nettleseren at dette er et HTML5-dokument -->
+<html lang="nb"> <!-- Angir språk (norsk bokmål) for hele dokumentet -->
+    <head>
+        <!-- Angir tegnsett, nødvendig for å vise æ, ø, å -->
+        <meta charset="UTF-8">
+        
+        <!-- Sørger for at siden skaleres riktig på mobil (responsivt design) -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Kobler til ekstern CSS-fil for styling -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        
+        <!-- Tittelen vises i nettleserfanen -->
+        <title>Responsivt Grid</title>
+    </head>
+    <body>
+        <!-- Hovedcontainer for grid-layout (definert i CSS) -->
+        <div id="grid-container">
+
+            <!-- Toppseksjonen / header -->
+            <header>
+                <h2>Header</h2>
+
+                <!-- Hamburger-knapp (synlig på små skjermer) -->
+                <button id="ham">&#9776;</button> <!-- &#9776; = ☰ ikon -->
+
+                <!-- Navigasjonsmenyen -->
+                <nav id="menu" class="hidden">
+                    
+                    <!-- Lukk-knapp (X) for menyen -->
+                    <button id="close">X</button>
+
+                    <!-- Menypunkter -->
+                    <ul>
+                        <li><a href="#">Hjem</a></li>
+                        <li><a href="#">Om oss</a></li>
+                        <li><a href="#">Tjenester</a></li>
+                        <li><a href="#">Kontakt oss</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Hovedinnholdet -->
+            <main>
+                <h1>Main</h1>
+                <section>
+                    <h2>Nyeste bilder</h2>
+                    <article>
+                        <h3>Katt</h3>
+                        <picture>
+                            <source media="(min-width: 1400px)" srcset="img/cat1920.jpg">
+                            <source media="(min-width: 900px)" srcset="img/cat1280.jpg">
+                            <img src="img/cat640.jpg" alt="katte bilde">
+                        </picture>
+                    </article>
+                    <article>
+                        <h3>Hund</h3>
+                    </article>
+                </section>
+            </main>
+
+            <!-- Sideinnhold (f.eks. reklame, ekstra info, lenker) -->
+            <aside>
+                <h3>Aside</h3>
+            </aside>
+
+            <!-- Bunntekst -->
+            <footer>
+                <p>Footer</p>
+            </footer>
+        </div>
+
+        <!-- Kobler til ekstern JavaScript-fil (for menylogikk m.m.) -->
+        <script src="js/script.js"></script>
+    </body>
+</html>

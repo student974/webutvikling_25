@@ -1,0 +1,48 @@
+// =========================
+// Modul-importer
+// =========================
+
+// @use 'fonts'
+// Hva: Laster typografivariabler og miksiner.
+// Hvorfor: Holder font-relatert logikk samlet og navnerommet.
+// Hvordan: Tilgang via prefiks, f.eks. fonts.$main-font.
+@use 'fonts';
+
+// @use 'colors'
+// Hva: Laster fargepaletten.
+// Hvorfor: Sikrer konsistent fargebruk på tvers av prosjektet.
+// Hvordan: Verdier nås via colors.$variable.
+@use 'colors';
+
+// @use 'layout'
+// Hva: Laster layoutmiksiner/variabler (grid, spacing).
+// Hvorfor: Samler layoutregler for gjenbruk og vedlikehold.
+// Hvordan: Eksponeres via layout.-prefiks (ikke brukt her, men klart til bruk).
+@use 'layout';
+
+// @use 'components'
+// Hva: Laster komponentstiler (kort, knapper, osv.).
+// Hvorfor: Modulær struktur som forenkler skalering av designet.
+// Hvordan: Importerer komponenter én gang for hele appen.
+@use 'components';
+
+
+// =========================
+// Global base: <body>
+// =========================
+// Hva: Setter grunnleggende typografi og tekstfarge for hele dokumentet.
+// Hvorfor: Gir et enhetlig utgangspunkt og reduserer behovet for dupliserte regler.
+// Hvordan: Nullstiller margin, definerer font-familie og basis tekstfarge.
+body{
+    margin: 0;                         // Hva: Fjerner standard nettleser-margin.
+                                       // Hvorfor: Forhindrer uønsket hvit kant rundt siden.
+                                       // Hvordan: Setter margin til 0.
+
+    font-family: fonts.$main-font;     // Hva: Global skrifttype.
+                                       // Hvorfor: Sikrer konsistent typografi overalt.
+                                       // Hvordan: Leser verdien fra fonts-modulen.
+
+    color: colors.$primary-color;      // Hva: Standard tekstfarge.
+                                       // Hvorfor: Gir god kontrast og følger brand-paletten.
+                                       // Hvordan: Bruker primærfargen fra colors-modulen.
+}

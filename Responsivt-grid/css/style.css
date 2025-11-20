@@ -1,0 +1,158 @@
+/* Globale variabler for farger (kan gjenbrukes i hele dokumentet) */
+:root{
+    --main: #f5efe6;    /* Bakgrunnsfarge for main-innhold */
+    --aside: #e8dfca;   /* Bakgrunnsfarge for sideinnhold (aside) */
+    --header: #cbdceb;  /* Bakgrunnsfarge for header */
+    --footer: #6d94c5;  /* Bakgrunnsfarge for footer */
+
+    --small: clamp(14px, 1em + 1vw, 18px);
+    --medium: clamp(16px, 1em + 1vw, 20px);
+    --large: clamp(18px, 1em + 1vw, 24px);
+}
+
+/* Setter boks-modellen til å inkludere padding og border i total bredde/høyde */
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: clamp(16px, 1em + 1vw, 30px);
+}
+
+/* Grunnoppsett for body */
+body{
+    font-family: Arial, Helvetica, sans-serif; /* Skrifttype */
+    margin: 0;        /* Fjerner standard margin */
+    min-height: 100vh;/* Sørger for at body dekker hele høyden på skjermen */
+    display: flex;    /* Flex gjør at grid-container kan strekke seg */
+    font-size: 1rem;
+}
+
+/* Hovedcontainer for grid-layout */
+#grid-container{
+    width: 100%;
+    height: inherit;
+    display: grid;
+    grid-template-areas: "topp" 
+                         "hovedinnhold" 
+                         "sideinnhold" 
+                         "bunn";  /* Definerer grid-områder for små skjermer */
+}
+/*
+h1{
+    font-size: var(--large);
+}
+h2{
+    font-size: var(--medium);
+}
+h3{
+    font-size: var(--small);
+}*/
+
+/* Felles stil for header, main, aside og footer */
+header,main,aside,footer{
+    padding: 1rem;
+}
+
+/* Header plasseres i grid-området "topp" og får farge fra variabel */
+header{
+    background-color: var(--header);
+    grid-area: topp;
+
+    nav{
+        ul{
+            list-style: none;
+
+            li{
+                a{
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+
+/* Main plasseres i "hovedinnhold" */
+main{
+    background-color: var(--main);
+    grid-area: hovedinnhold;
+}
+
+/* Aside plasseres i "sideinnhold" */
+aside{
+    background-color: var(--aside);
+    grid-area: sideinnhold;
+}
+
+/* Footer plasseres i "bunn" */
+footer{
+    background-color: var(--footer);
+    grid-area: bunn;
+}
+
+/* Klassen .hidden skjuler elementer (brukes av JS) */
+.hidden{
+    display: none;
+}
+
+img{
+    width: 100%;
+    max-width: 900px;
+}
+
+/* --- RESPONSIV DESIGN: SKJERMER UNDER 600px --- */
+@media only screen and (max-width:600px){
+    
+    /* Menyen vises som "overlay" øverst på hele skjermen */
+    #menu {
+        background-color: antiquewhite; /* Egen bakgrunn */
+        position: absolute;             /* Plasseres over annet innhold */
+        width: 100%;                    /* Full bredde */
+        top: 0;                         /* Starter helt øverst */
+        left: 0;                        /* Starter helt til venstre */
+        padding: 2rem;                  /* Luft rundt innholdet */
+      }
+
+}
+
+/* --- RESPONSIV DESIGN: SKJERMER OVER 600px --- */
+@media only screen and (min-width:600px){
+    
+    /* Grid layout endres til 2 kolonner (main + aside) */
+    #grid-container{
+        grid-template-columns: 3fr 1fr;    /* Main bredere enn aside */
+        grid-template-areas: "topp topp" 
+                             "hovedinnhold sideinnhold"
+                             "bunn bunn";
+    }
+
+    /* Header får flex for å plassere innholdet på hver side */
+    header{
+        display: flex;
+        justify-content: space-between; /* Plasserer elementene venstre/høyre */
+    }
+
+    /* Når skjermen er bred nok, skal .hidden-elementer vises igjen */
+    .hidden{
+        display: inline-block;
+    }
+
+    /* Menyen tilpasset desktop: liste horisontalt */
+    #menu{
+        ul{
+            display: flex; /* Viser menyvalg på linje */
+            gap: 1rem;     /* Avstand mellom menyvalg */
+        }
+    }
+
+    /* Hamburger-knappen skjules på større skjermer */
+    #ham{
+        display: none;
+    }
+
+    #close{
+        display: none;
+    }
+
+}

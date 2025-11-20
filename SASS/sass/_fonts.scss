@@ -1,0 +1,27 @@
+// =========================
+// Typografi-variabler
+// =========================
+
+// $large-font
+// Hva: Definerer en stor fontstørrelse.
+// Hvorfor: Brukes til overskrifter eller viktige tekstpartier for å skape visuell hierarki.
+// Hvordan: Angitt i rem for skalerbarhet i forhold til root-fontstørrelsen (1rem = 16px som standard).
+$large-font: 2.5rem;
+
+// $medium-font
+// Hva: Mellomstor fontstørrelse.
+// Hvorfor: Brukes typisk til mellomtitler eller fremhevet tekst som skal være tydelig, men ikke like dominerende som overskrifter.
+// Hvordan: Verdien er definert i rem for å skalere proporsjonalt med brukerens innstillinger.
+$medium-font: 1.8rem;
+
+// $normal-font
+// Hva: Standard fontstørrelse for brødtekst.
+// Hvorfor: Sørger for lesbarhet og konsistent typografi på tvers av komponenter.
+// Hvordan: 1rem tilsvarer vanligvis 16px i de fleste nettlesere, som er en god basis for brødtekst.
+$normal-font: 1rem;
+
+// $main-font
+// Hva: Hovedfontfamilie for hele nettstedet.
+// Hvorfor: Gir et enhetlig og konsekvent uttrykk i all tekst.
+// Hvordan: Angitt som 'arial' med sans-serif fallback, slik at hvis Arial ikke er tilgjengelig, brukes en tilsvarende sans-serif-font.
+$main-font: 'arial', sans-serif;

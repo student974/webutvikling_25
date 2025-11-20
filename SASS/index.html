@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Hva: Gjør layout responsiv.
+         Hvorfor: Riktig skalering på mobile enheter.
+         Hvordan: Standard viewport-tag. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hva: Kobler kompilert CSS (fra SASS) til dokumentet.
+         Hvorfor: For å bruke stilene definert i SASS-modulene.
+         Hvordan: main.css er output fra SASS som @use'r:
+                  - fonts (fonts.$main-font brukes i body)
+                  - colors (colors.$primary-color brukes i body, statusfarger i kort)
+                  - layout (mixin alterLayout, gridPlacement; .flex, .flex-column, .main-container)
+                  - components (card-base, %box-shadow, colorTemplate, status-varianter) -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>SASS</title>
+</head>
+<body>
+    <!-- Hva: Ytre wrapper som styrer bredde og kolonnestabling.
+         Hvorfor: Sentralisert, responsiv layout med vertikal flyt.
+         Hvordan: 
+           - .main-container: fra layout.scss (max-width, margin auto, padding)
+           - .flex-column: @extend .flex + flex-direction: column i layout.scss -->
+    <div class="flex-column main-container">
+
+        <!-- Hva: Sidens toppfelt.
+             Hvorfor: Samler tittel/branding.
+             Hvordan: Arver grunnstil fra body (fonts.$main-font, colors.$primary-color). -->
+        <header>
+            <h1>Min første SASS side</h1>
+        </header>
+
+        <!-- Hva: Hovedinnhold med fleksibel rad-layout.
+             Hvorfor: Legger til fleksibel plassering av seksjoner.
+             Hvordan: .flex i layout.scss (display:flex; flex-wrap; gap). -->
+        <main class="flex">
+
+            <!-- Hva: Grid-seksjon som plasserer tre kort i et 2x2-layout.
+                 Hvorfor: Demonstrere CSS Grid styrt av SASS-mixins.
+                 Hvordan:
+                   - #grid-layout inkluderer @include alterLayout(1fr 1fr, auto auto) fra layout.scss
+                   - Barn <article> posisjoneres med :nth-child(...) og mixin @include gridPlacement(...) -->
+            <section id="grid-layout">
+
+                <!-- Hva: Suksess-kort.
+                     Hvorfor: Vise positiv status med semantiske farger.
+                     Hvordan:
+                       - .success @extend .card (components.scss), arver border/padding/box-shadow (%box-shadow)
+                       - @include colorTemplate(colors.$succsessBGcolor, colors.$succsessBorderColor, colors.$succsessTextColor)
+                       - Plassering i grid via #grid-layout > article:nth-child(1) i layout.scss -->
+                <article class="success">
+                    <h3>Kort</h3>
+                </article>
+
+                <!-- Hva: Advarselskort.
+                     Hvorfor: Kommuniserer varsel/oppmerksomhet.
+                     Hvordan:
+                       - .warning @extend .card
+                       - @include colorTemplate(colors.$warningBGcolor, colors.$warningBorderColor, colors.$warningTextColor)
+                       - Plassering i grid via #grid-layout > article:nth-child(2) (grid-column: 2/3; grid-row: 1/2). -->
+                <article class="warning">
+                    <h3>Kort</h3>
+                </article>
+
+                <!-- Hva: Feilkort.
+                     Hvorfor: Tydeliggjør feiltilstand.
+                     Hvordan:
+                       - .error @extend .card
+                       - @include colorTemplate(colors.$errorBGcolor, colors.$errorBorderColor, colors.$errorTextColor)
+                       - Plassering i grid via #grid-layout > article:nth-child(3) (grid-column: span 2; grid-row: 2/3). -->
+                <article class="error">
+                    <h3>Kort</h3>
+                </article>
+            </section>
+        </main>
+
+        <!-- Hva: Bunntekst.
+             Hvorfor: Viser metadata/opphavsinfo.
+             Hvordan: Arver globale typografistiler (fonts.$main-font) og farger (colors.$primary-color) fra body i base.scss. -->
+        <footer>
+            <p>Webutvikling 2025</p>
+        </footer>
+    </div>
+</body>
+</html>

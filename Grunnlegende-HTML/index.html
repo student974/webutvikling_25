@@ -1,0 +1,264 @@
+<!-- Forteller nettleseren at dokumentet følger HTML5-standarden. Må stå øverst. -->
+<!DOCTYPE html>
+
+<!-- Rot-elementet for hele HTML-dokumentet.
+     lang="nb" angir innholdsspråk (norsk bokmål) for søkemotorer og hjelpemidler (f.eks. skjermlesere). -->
+<html lang="nb">
+  <head>
+    <!-- <meta charset> setter tegnsett. UTF-8 støtter norske tegn (æ, ø, å) og de fleste språk. -->
+    <meta charset="UTF-8" />
+    <!-- Gjør layout responsiv på mobile enheter:
+         name="viewport" målretter visningsporten.
+         content="width=device-width" => bruk enhetens faktiske bredde.
+         "initial-scale=1.0" => start med 100% zoom. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="icons/css/fontawesome.css" rel="stylesheet" />
+    <link href="icons/css/brands.css" rel="stylesheet" />
+    <link href="icons/css/solid.css" rel="stylesheet" />
+    <link href="icons/css/sharp-thin.css" rel="stylesheet" />
+    <link href="icons/css/sharp-duotone-thin.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+    <!-- Teksten som vises i nettleserfanen og som standard-bokmerketittel. Viktig for SEO. -->
+    <title>Forside - Dataspæll</title>
+  </head>
+
+  <!-- <body> inneholder alt synlig innhold og interaktive elementer på siden. -->
+  <body>
+    <div id="page-container">
+    <!-- Eksempel på utkommentert test-overskrift.
+         Kommentarer, renderes ikke i nettleseren. -->
+    <!-- <h1>Første fil</h1> -->
+
+    <!-- <header> er en semantisk beholder for toppinnhold som logo, tittel og hovednavigasjon. -->
+    <header id="global-header">
+      <!-- <a> er en lenke (ankerelement).
+           href="index.html" peker til startsiden. Lenketeksten "LOGO" fungerer som midlertidig logo. -->
+      <a href="index.html" id="mainlogo">LOGO</a>
+
+      <!-- <nav> markerer en navigasjonsseksjon slik at hjelpemidler enkelt finner hovedmenyen. -->
+      <nav>
+        <!-- <ul> (unordered list) representerer en punktliste med navigasjonsvalg. -->
+        <ul>
+          <!-- <li> (list item) – hvert menyvalg er et listeelement. -->
+          <li>
+            <!-- Menypunkt som lenker til forsiden.
+                 href="index.html" => relativ lenke til samme mappe. -->
+            <a href="index.html">Hjem</a>
+          </li>
+
+          <!-- Menypunkt som lenker til produktsiden. -->
+          <li>
+            <a href="products.html">Produkter</a>
+          </li>
+          <li><i class="fa-solid fa-magnifying-glass"></i></li>
+          <li><i class="fa-solid fa-bars"></i></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- <section> grupperer relatert innhold (hero/tilbud på forsiden).
+         Semantikk hjelper skjermlesere og SEO å forstå struktur. -->
+    <section class="deal-section">
+      <!-- <h2> er en seksjonsoverskrift (neste nivå under <h1>).
+           Tips: Ha én <h1> per side øverst i hovedinnholdet for best struktur. -->
+      <h2>Crazy Gaming Deals</h2>
+
+      <!-- <img> viser bilde.
+           src angir bildekilde (her placeholder-tjeneste).
+           alt bør beskrive bildet for skjermlesere (tom alt betyr dekorativt bilde).
+           Tips: Bruk beskrivende alt, f.eks. alt="Gråtonet spillkampanjebanner". -->
+      <!-- <img src="https://picsum.photos/700/500?grayscale" alt="" /> -->
+
+      <!-- <p> avsnitt med beskrivende tekst. -->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt
+      </p>
+
+      <!-- Primær handling (CTA) som leder til tilbudsside.
+           href="offers.html" peker til egen side med kampanjer. -->
+      <a href="offers.html" class="btn">Se tilbud</a>
+    </section>
+
+    <!-- <main> markerer hovedinnholdet på siden.
+         Hjelper assistive tech å hoppe rett til “content”. Bare én <main> per side. -->
+    <main>
+      <!-- Seksjon for populære spillkort. -->
+      <section class="flex-container flex-grow">
+        <!-- Seksjonsoverskrift for innholdsblokken. -->
+        <h2>Populære Spæll</h2>
+
+        <!-- <article> brukes for selvstendige innholdsbiter som kan stå alene (kort/produkt).
+             Inneholder bilde, tittel, beskrivelse, pris og handling. -->
+        <article class="product-card">
+          <!-- Produktbilde.
+               alt-tekst beskriver produktet for tilgangsverktøy. -->
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <!-- <h3> er artikkelens tittel (underordnet <h2>). -->
+          <h3>Red dead Redemption</h3>
+          <!-- Kort beskrivelse. -->
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <!-- Pris. Tips: vurder <data value="499">kr 499</data> for maskinlesbar verdi. -->
+          <p>kr 499</p>
+          <!-- Handlingslenke (CTA). href="" betyr “ingen mål-URL ennå”.
+               Tips: når dette blir en knapp som legger i handlekurv via JS, vurder <button>. -->
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+
+        <!-- Gjentatte produktkort med samme struktur.
+             Tips: Unike alt-tekster og titler for hvert produkt. -->
+        <article class="product-card">
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <h3>Red dead Redemption</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <p>kr 499</p>
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+
+        <article class="product-card">
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <h3>Red dead Redemption</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <p>kr 499</p>
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+
+        <article class="product-card">
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <h3>Red dead Redemption</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <p>kr 499</p>
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+        <article class="product-card">
+          <!-- Produktbilde.
+               alt-tekst beskriver produktet for tilgangsverktøy. -->
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <!-- <h3> er artikkelens tittel (underordnet <h2>). -->
+          <h3>Red dead Redemption</h3>
+          <!-- Kort beskrivelse. -->
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <!-- Pris. Tips: vurder <data value="499">kr 499</data> for maskinlesbar verdi. -->
+          <p>kr 499</p>
+          <!-- Handlingslenke (CTA). href="" betyr “ingen mål-URL ennå”.
+               Tips: når dette blir en knapp som legger i handlekurv via JS, vurder <button>. -->
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+
+        <!-- Gjentatte produktkort med samme struktur.
+             Tips: Unike alt-tekster og titler for hvert produkt. -->
+        <article class="product-card">
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <h3>Red dead Redemption</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <p>kr 499</p>
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+
+        <article class="product-card">
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <h3>Red dead Redemption</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <p>kr 499</p>
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+
+        <article class="product-card">
+          <img
+            src="https://picsum.photos/200/300?grayscale"
+            alt="Red Dead Redemption"
+          />
+          <h3>Red dead Redemption</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <p>kr 499</p>
+          <a href="product.html" class="btn">Se produkt</a>
+        </article>
+      </section>
+
+      <!-- Seksjon for kategorier/lenkesamling til undersider. -->
+      <section class="flex-container flex-grow">
+        <h2>Kategorier</h2>
+        <!-- Hver <article> kan representere en kategoriinngang.
+             <h3> inneholder en lenke til kategoriside. -->
+        <article class="grow-1 category-card">
+          <!-- Lenke til “Action”-kategori. -->
+          <h3><a href="action.html">Action</a></h3>
+        </article>
+
+        <article class="category-card">
+          <!-- Lenke til “Nintendo”-kategori. -->
+          <h3><a href="nintendo.html">Nintendo</a></h3>
+        </article>
+
+        <article class="category-card">
+          <!-- Lenke til “Rollespill”-kategori. -->
+          <h3><a href="rollespill.html">Rollespill</a></h3>
+        </article>
+
+        <article class="grow-2 category-card">
+          <!-- Lenke til “Fantasy”-kategori. -->
+          <h3><a href="fantasy.html">Fantasy</a></h3>
+        </article>
+      </section>
+    </main>
+
+    <!-- <aside> for supplerende/sekundært innhold (f.eks. nyhetsbrev/klubbinnmelding).
+         Skjermlesere forstår dette som sidestolpe/tillegg. -->
+    <aside class="side-container">
+      <!-- Tittel for aside-innhold. -->
+      <h4>Meld deg inn i spællklubben</h4>
+
+      <!-- Kort forklaring til skjemaet. -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+
+      <!-- <form> kapsler inn skjemafelt.
+           Uten action/metode brukes standard GET til samme URL (ingen innsending her). -->
+      <form>
+        <!-- <label> knytter tekstlig forklaring til et input-felt.
+             Her er input feltet plassert inni <label>, som implisitt kobler dem. -->
+        <label>
+          <!-- Beskrivende etikettekst for e-postfeltet. -->
+          E-post:
+          <!-- <input> med type="email" validerer e-postformat i nettlesere som støtter det.
+               placeholder gir eksempeltekst.
+               Tips: legg til name="email" for innsending og id/for for eksplisitt kobling. -->
+          <input type="email" placeholder="ola.nordman@hiof.no....">
+        </label>
+
+        <!-- Innsendingsknapp for skjemaet.
+             type="submit" sender skjemaet når klikket.
+             value angir knappens etikett. -->
+        <input class="btn" type="submit" value="Mel meg på">
+
+        <!-- Etikett knyttet til avkrysningsboks via for="age-validation" og id="age-validation".
+             Dette gjør at klikk på teksten toggler boksen. -->
+        <label class="age-check" for="age-validation"> Over 18
+          <input type="checkbox" id="age-validation" required>
+        </label>
+      </form>
+    </aside>
+    <footer>Webutvikling 2025</footer>
+    </div>
+  </body>
+</html>

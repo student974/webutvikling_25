@@ -1,0 +1,90 @@
+// =========================
+// Grunnfarger (brand/UI)
+// =========================
+
+// $primary-color
+// Hva: Hovedfarge for tekst/bakgrunn/primære elementer.
+// Hvorfor: Skaper et konsistent grunnpreg i UI-et.
+// Hvordan: Hex-verdi (#1d1d1d) — svært mørk grå nær svart, gir høy kontrast på lys bakgrunn.
+$primary-color: #1d1d1d;
+
+// $secondary-color
+// Hva: Sekundær aksentfarge.
+// Hvorfor: Brukes til lenker, knapper, highlights eller interaktive elementer.
+// Hvordan: Hex-verdi (#1f5c8b) — en mettet blå som fungerer godt sammen med nøytrale gråtoner.
+$secondary-color: #1f5c8b;
+
+// $lightGrey
+// Hva: Lys grå hjelpefarge.
+// Hvorfor: Avgrensning, border, subtile bakgrunner eller deaktivert tilstand.
+// Hvordan: Hex-verdi (#ccc) — nøytral og diskret, fungerer på tvers av komponenter.
+$lightGrey: #ccc;
+
+
+// =========================
+// Statusfarger: Error (feil)
+// =========================
+
+// $errorBGcolor
+// Hva: Bakgrunnsfarge for feilmeldinger/feiltilstand.
+// Hvorfor: Signaliserer tydelig avvik eller kritiske problemer uten å bli for skarp.
+// Hvordan: Lys rød/rosa (#f8d7da) for tydelig men lesbar kontrast med mørk tekst.
+$errorBGcolor: #f8d7da;
+
+// $errorTextColor
+// Hva: Tekstfarge over error-bakgrunn.
+// Hvorfor: Sikrer lesbarhet og semantisk kobling til feilmeldinger.
+// Hvordan: Mørk rød (#721c24) som harmonerer med bakgrunnen og gir god kontrast.
+$errorTextColor: #721c24;
+
+// $errorBorderColor
+// Hva: Kantfarge for error-komponenter.
+// Hvorfor: Gir visuell struktur uten å dominere flaten.
+// Hvordan: Middels rød (#f5c6cb) — litt mørkere enn bakgrunnen for subtil avgrensning.
+$errorBorderColor: #f5c6cb;
+
+
+// =========================
+// Statusfarger: Warning (advarsel)
+// =========================
+
+// $warningBGcolor
+// Hva: Bakgrunn for advarsler/oppmerksomhet.
+// Hvorfor: Formidler risiko eller viktig informasjon uten å implisere feil.
+// Hvordan: Lys gul (#fff3cd) for rask visuell gjenkjenning.
+$warningBGcolor: #fff3cd;
+
+// $warningTextColor
+// Hva: Tekstfarge over warning-bakgrunn.
+// Hvorfor: Lesbarhet og semantisk samsvar for advarsler.
+// Hvordan: Mørk oker (#856404) som gir god kontrast mot den lyse gule.
+$warningTextColor: #856404;
+
+// $warningBorderColor
+// Hva: Kantfarge for warning-komponenter.
+// Hvorfor: Avgrenser komponenten uten å skape "støy".
+// Hvordan: Dempet gul (#ffeeba), mørkere enn bakgrunnen for definisjon.
+$warningBorderColor: #ffeeba;
+
+
+// =========================
+// Statusfarger: Success (suksess)
+// =========================
+
+// $succsessBGcolor
+// Hva: Bakgrunn for suksess/bekreftelse.
+// Hvorfor: Kommuniserer positiv tilbakemelding (lagret, sendt, OK).
+// Hvordan: Lys grønn (#d4edda) som føles trygg og rolig.
+$succsessBGcolor: #d4edda;
+
+// $succsessTextColor
+// Hva: Tekstfarge over success-bakgrunn.
+// Hvorfor: Opprettholder god lesbarhet og semantikk for vellykket tilstand.
+// Hvordan: Dyp grønn (#155724) som kontrasterer godt mot lys bakgrunn.
+$succsessTextColor: #155724;
+
+// $succsessBorderColor
+// Hva: Kantfarge for success-komponenter.
+// Hvorfor: Gir tydelig men subtil innramming.
+// Hvordan: Middels grønn (#c3e6cb) — litt mørkere enn bakgrunnen for definisjon.
+$succsessBorderColor: #c3e6cb;

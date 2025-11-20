@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--
+  LENKER TIL UUTILSYNET (WCAG) SOM BRUKES I DENNE FILA:
+  - 1.1.1 Ikke-tekstlig innhold (A): https://www.uutilsynet.no/wcag-standarden/111-ikke-tekstlig-innhold-niva/87
+  - 1.3.1 Informasjon og relasjoner (A): https://www.uutilsynet.no/wcag-standarden/131-informasjon-og-relasjoner-niva/90
+  - 1.4.1 Bruk av farge (A): https://www.uutilsynet.no/wcag-standarden/141-bruk-av-farge-niva/93
+  - 1.4.3 Kontrast (minimum) (AA): https://www.uutilsynet.no/wcag-standarden/143-kontrast-minimum-niva-aa/95
+  - 1.4.4 Endring av tekststørrelse (AA): https://www.uutilsynet.no/wcag-standarden/144-endring-av-tekststorrelse-niva-aa/96
+  - 1.4.10 Dynamisk tilpasning / Reflow (AA): https://www.uutilsynet.no/wcag-standarden/1410-dynamisk-tilpasning-reflow-niva-aa/144
+  - 2.1.1 Tastatur (A): https://www.uutilsynet.no/wcag-standarden/211-tastatur-niva/98
+  - 2.4.1 Hoppe over blokker (A): https://www.uutilsynet.no/wcag-standarden/241-hoppe-over-blokker-niva/103
+  - 2.4.2 Sidetitler (A): https://www.uutilsynet.no/wcag-standarden/242-sidetitler-niva/104
+  - 2.4.4 Formål med lenke (i kontekst) (A): https://www.uutilsynet.no/veiledning/244-formal-med-lenke-i-kontekst/1251
+  - 2.4.5 Flere måter (AA): https://www.uutilsynet.no/wcag-standarden/245-flere-mater-niva-aa/107
+  - 2.4.6 Overskrifter og ledetekster (AA): https://www.uutilsynet.no/wcag-standarden/246-overskrifter-og-ledetekster-niva-aa/108
+  - 2.4.7 Synlig fokus (AA): https://www.uutilsynet.no/wcag-standarden/247-synlig-fokus-niva-aa/109
+  - 2.5.3 Ledetekst i navn (A): https://www.uutilsynet.no/wcag-standarden/253-ledetekst-i-navn-niva/150
+  - 3.1.1 Språk på siden (A): https://www.uutilsynet.no/wcag-standarden/311-sprak-pa-siden-niva/110
+  - 3.3.1 Identifikasjon av feil (A): https://www.uutilsynet.no/wcag-standarden/331-identifikasjon-av-feil-niva/116
+  - 3.3.2 Ledetekster eller instruksjoner (A): https://www.uutilsynet.no/wcag-standarden/332-ledetekster-eller-instruksjoner-niva/117
+  - 3.3.3 Forslag ved feil (AA): https://www.uutilsynet.no/veiledning/333-forslag-ved-feil/1264
+  - 4.1.2 Navn, rolle, verdi (A): https://www.uutilsynet.no/wcag-standarden/412-navn-rolle-verdi-niva/121
+
+  Full oversikt etter prinsipp: https://www.uutilsynet.no/wcag-standarden/wcag-sortert-etter-prinsipp/713
+-->
+<!--
+  Forbedret undervisningsfil: samme struktur som innsendt, men nå med
+  UTFYLLENDE KOMMENTARER som peker til WCAG-prinsipper og suksesskriterier.
+  OBS: Koden her er ment som læringsgrunnlag; ikke alle anbefalinger er
+  implementert – flere kommenteres som TODO.
+-->
+<html lang="nb">
+  <!-- WCAG 3.1.1 (A) Språk på siden: lang="nb" hjelper skjermleser og korrekt talesyntese -->
+<!-- https://www.uutilsynet.no/wcag-standarden/311-sprak-pa-siden-niva/110 -->
+  <head>
+    <meta charset="utf-8">
+    <!-- WCAG 1.4.4 (AA) og 1.4.10 (AA): Tillater zoom/reflow ved forstørrelse -->
+<!-- https://www.uutilsynet.no/wcag-standarden/144-endring-av-tekststorrelse-niva-aa/96 -->
+<!-- https://www.uutilsynet.no/wcag-standarden/1410-dynamisk-tilpasning-reflow-niva-aa/144 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Forside for verden beste nettside</title>
+    <!-- WCAG 2.4.2 (A) Sidetittel: beskrivende tittel som gjenspeiler formålet -->
+<!-- https://www.uutilsynet.no/wcag-standarden/242-sidetitler-niva/104 -->
+  </head>
+  <body>
+    <!-- TODO (anbefalt): Legg inn en skip-lenke før hovednavigasjon
+         https://www.uutilsynet.no/wcag-standarden/241-hoppe-over-blokker-niva/103 
+         <a class="skip-link" href="#main">Hopp til hovedinnhold</a>
+         WCAG 2.4.1 (A) Hoppe over blokker -->
+
+    <header>
+      <span class="logo" aria-hidden="true"></span>
+      <!-- aria-hidden for logo er greit dersom logoen kun er dekorativ.
+           WCAG 1.1.1 (A) Ikke-tekstlig innhold: Viktig bilde skulle hatt alt-tekst -->
+      <span class="site-title">Min side</span>
+      <!-- WCAG 1.3.1 (A) Informasjon og relasjoner: Semantisk <header> gir struktur  -->
+    </header>
+
+    <nav>
+      <!-- WCAG 1.3.1 (A) / ARIA-landemerker via semantisk <nav> gjør navigasjon enklere
+           WCAG 2.4.5 (AA) Flere måter: navigasjonsmeny er en av flere måter å finne innhold -->
+<!-- https://www.uutilsynet.no/wcag-standarden/131-informasjon-og-relasjoner-niva/90 -->
+<!-- https://www.uutilsynet.no/wcag-standarden/245-flere-mater-niva-aa/107 -->
+      <ul>
+        <li><a href="#">Hjem</a></li>
+        <li><a href="#">Om oss</a></li>
+        <li>
+          <!-- <details>/<summary> gir tastaturstøtte uten JS
+               WCAG 2.1.1 (A) Tastatur; 4.1.2 (A) Navn/rolle/verdi (tilstand «åpen») -->
+<!-- https://www.uutilsynet.no/wcag-standarden/211-tastatur-niva/98 -->
+<!-- https://www.uutilsynet.no/wcag-standarden/412-navn-rolle-verdi-niva/121 -->
+          <details>
+            <summary>Tjenester</summary>
+            <ul>
+              <li><a href="#">Design</a></li>
+              <li><a href="#">Utvikling</a></li>
+              <li><a href="#">Konsulent</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+      <!-- TODO: Sørg for tydelig fokusmarkering i CSS for lenker/summary
+           WCAG 2.4.7 (AA) Synlig fokus -->
+<!-- https://www.uutilsynet.no/wcag-standarden/247-synlig-fokus-niva-aa/109 -->
+    </nav>
+
+    <section>
+      <!-- Beskrivende lenketekst
+           WCAG 2.4.4 (A) Formål med lenke: lenkens mål fremgår av tekst/kontekst -->
+<!-- https://www.uutilsynet.no/veiledning/244-formal-med-lenke-i-kontekst/1251 -->
+      <h2><a href="#">Les mer her for viktig informasjon ang eksamen </a></h2>
+      <!-- TODO: Unngå å kapsle lange setninger som overskrift; bruk kort overskrift + <p>
+           WCAG 2.4.6 (AA) Overskrifter og ledetekster skal beskrive emnet kort og presist -->
+<!-- https://www.uutilsynet.no/wcag-standarden/246-overskrifter-og-ledetekster-niva-aa/108 -->
+    </section>
+    <main id="main">
+      <!-- WCAG 1.3.1 (A) struktur; 2.4.1 (A) skip-lenke kan peke hit -->
+<!-- https://www.uutilsynet.no/wcag-standarden/131-informasjon-og-relasjoner-niva/90 -->
+<!-- https://www.uutilsynet.no/wcag-standarden/241-hoppe-over-blokker-niva/103 -->
+      <h1>
+        VELKOMMEN TIL DEN BESTE SIDEN NOENSINNE (LES VIKTIG TEKST HER OVER BAKGRUNNSBILDE)
+      </h1>
+      <!-- WCAG 2.4.6 (AA) Overskrifter skal være konsise. Unngå hele setninger i H1. -->
+<!-- https://www.uutilsynet.no/wcag-standarden/246-overskrifter-og-ledetekster-niva-aa/108 -->
+
+      <section>
+        <h2>Dette bør være en kort overskrift, ikke brødtekst</h2>
+        <!-- Tidligere lang H2-tekst egner seg bedre som <p> under overskriften
+             WCAG 2.4.6 (AA) -->
+        <p>Den opprinnelige teksten var lang og lite lesbar som overskrift. Flytt
+           slike forklaringer til avsnitt for bedre struktur og forståelse.</p>
+
+        <article>
+          <h4>Kontakt oss</h4>
+          <!-- WCAG 3.3.2 (A) Ledetekster/instruksjoner og 1.3.1 (A) relasjon label-input -->
+<!-- https://www.uutilsynet.no/wcag-standarden/332-ledetekster-eller-instruksjoner-niva/117 -->
+<!-- https://www.uutilsynet.no/wcag-standarden/131-informasjon-og-relasjoner-niva/90 -->
+          <form>
+            <label>
+              Navn:
+              <input type="text" id="navn" placeholder="Kari Nordmann..." required>
+            </label>
+            <!-- TODO: vurder autocomplete="name" for å lette utfylling
+                 WCAG 1.3.5 (AA) Identifisere formål med inndata -->
+<!-- https://www.uutilsynet.no/wcag-standarden/135-identifisere-formal-med-inndata-niva-aa/141 -->
+              
+            <label>
+              E-post:
+              <input type="email" id="email" placeholder="eksempel@hiof.no..." required>
+            </label>
+            <!-- TODO: autocomplete="email" (WCAG 1.3.5 AA) -->
+<!-- https://www.uutilsynet.no/wcag-standarden/135-identifisere-formal-med-inndata-niva-aa/141 -->
+              
+            <label>
+              Tel:
+              <input type="tel" placeholder="400 00 900" required>
+            </label>
+            <!-- TODO: label med for/id eller innebygget <label> som nå, og
+                 autocomplete="tel". 3.3.2 (A) -->
+              
+            <label for="service">Tjeneste</label>
+            <select id="service">
+              <option>Velg tema*</option>
+              <option>Bestilling</option>
+              <option>Support</option>
+            </select>
+            <!-- WCAG 3.3.2 (A) ledetekst i klartekst; vurder å gjøre første option
+                 til en tom, deaktivert «Velg…» med aria-required ved behov -->
+              
+            <label>Melding:
+              <textarea rows="3" placeholder="Melding..."></textarea>
+            </label>
+            <!-- TODO: Knytt hjelpetekst/feilmelding programmatisk til feltet
+                 med aria-describedby. WCAG 3.3.1 (A) og 4.1.2 (A) -->
+<!-- https://www.uutilsynet.no/wcag-standarden/331-identifikasjon-av-feil-niva/116 -->
+<!-- https://www.uutilsynet.no/wcag-standarden/412-navn-rolle-verdi-niva/121 -->
+
+            <p class="help">Felt merket med <span class="required">rød farge</span> er obligatoriske.</p>
+            <!-- Ikke stol på farge alene: WCAG 1.4.1 (A) Bruk av farge -->
+<!-- https://www.uutilsynet.no/wcag-standarden/141-bruk-av-farge-niva/93 -->
+
+            <p class="error">skjemaet er feil utfylt</p>
+            <!-- Gi konkrete, feltspesifikke feil og forslag til retting
+                 WCAG 3.3.1 (A) Identifikasjon av feil, 3.3.3 (AA) Forslag ved feil -->
+<!-- https://www.uutilsynet.no/wcag-standarden/331-identifikasjon-av-feil-niva/116 -->
+<!-- https://www.uutilsynet.no/veiledning/333-forslag-ved-feil/1264 -->
+
+            <input type="submit" value="Send">
+            <!-- Innleveringskontroll er fokus- og tastaturtilgjengelig
+                 WCAG 2.1.1 (A) Tastatur -->
+<!-- https://www.uutilsynet.no/wcag-standarden/211-tastatur-niva/98 -->
+          </form>
+        </article>
+
+        <article>
+          <h3>Mer innhold</h3>
+          <ol>
+            <li><a href="#">Les mer om eksamensoppgave 1 her</a></li>
+            <li><a href="#">Mer informasjon om eksamensoppgave 2 finner du her</a></li>
+            <li><a href="#">Informasjon om eksamensoppgave 3 blir publisert her</a></li>
+          </ol>
+          <!-- Beskrivende lenker i kontekst: WCAG 2.4.4 (A) -->
+          <button>Start eksamen</button>
+          <!-- Tydelig kontroll som kan aktiveres med tastatur: WCAG 2.1.1 (A) -->
+        </article>
+
+        <article>
+          <h3>Tabell uten overskrifter</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th scope="col">Kolonne 1</th>
+                <th scope="col">Kolonne 2</th>
+                <th scope="col">Kolonne 3</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- scope="col" tydeliggjør header-assosiasjoner. Vurder <caption>
+               for å beskrive tabellen. WCAG 1.3.1 (A) Informasjon og relasjoner -->
+<!-- https://www.uutilsynet.no/wcag-standarden/131-informasjon-og-relasjoner-niva/90 -->
+        </article>
+
+        <article>
+          <h3>Masse lenker med samme tekst</h3>
+          <ul>
+            <li><a href="#">Oppgave om UU</a></li>
+            <li><a href="#">Oppgave som SEO</a></li>
+            <li><a href="#">Oppgave om Semantiskk HTML</a></li>
+            <li><a href="#">Oppgave om CSS Grid og flex</a></li>
+          </ul>
+          <!-- Variasjon og presisjon i lenketekster øker forståelsen.
+               WCAG 2.4.4 (A) -->
+<!-- https://www.uutilsynet.no/veiledning/244-formal-med-lenke-i-kontekst/1251 -->
+        </article>
+      </section>
+    </main>
+<!--Flyttet aside etter main, hovedinnholdet burde alltid komme først-->
+    <aside>
+      <section>
+        <h4>Nyheter</h4>
+        <!-- Vurder overskriftsnivå: hopp til h4 kan være ok i et <aside>, men
+             sjekk totalhierarkiet. WCAG 1.3.1 (A) semantisk sammenheng -->
+<!-- https://www.uutilsynet.no/wcag-standarden/131-informasjon-og-relasjoner-niva/90 -->
+        <article>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt="">
+          <!-- BØR FORBEDRES: tom alt => dekorativt bilde. Hvis bildet formidler
+               innhold, skriv kort, meningsbærende alt-tekst.
+               WCAG 1.1.1 (A) Ikke-tekstlig innhold -->
+<!-- https://www.uutilsynet.no/wcag-standarden/111-ikke-tekstlig-innhold-niva/87 -->
+          <a class="tiny-link" href="#">Klikk her</a> for å lese mer om ting.
+          <!-- Bytt «Klikk her» til mer beskrivende tekst
+               WCAG 2.4.4 (A) Formål med lenke -->
+<!-- https://www.uutilsynet.no/veiledning/244-formal-med-lenke-i-kontekst/1251 -->
+        </article>
+        <p class="status-ok">Tilgjengelig</p>
+        <p class="status-bad">Utilgjengelig</p>
+        <!-- Ikke bruk bare farge for status. Supplér med ikon/tekstlig indikator.
+             WCAG 1.4.1 (A) Bruk av farge -->
+<!-- https://www.uutilsynet.no/wcag-standarden/141-bruk-av-farge-niva/93 -->
+      </section>
+
+      <section>
+        <h4>Språk</h4>
+        <ul>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Norway.svg" alt="Norsk (bokmål)" title="Norsk bokmål"></li>
+          <!-- Forbedret alt-tekst foreslått: «Norsk (bokmål)» fremfor «no»
+               WCAG 1.1.1 (A) -->
+<!-- https://www.uutilsynet.no/wcag-standarden/111-ikke-tekstlig-innhold-niva/87 -->
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg" alt="Engelsk" title="Engelsk"></li>
+        </ul>
+      </section>
+    </aside>
+
+    <footer>
+      <!-- Ikoner med meningsbærende alt-tekst: WCAG 1.1.1 (A) -->
+<!-- https://www.uutilsynet.no/wcag-standarden/111-ikke-tekstlig-innhold-niva/87 -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Facebook_icon.svg" alt="Lenke til Facebook-side">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Twitter_logo.svg" alt="Lenke til X/Twitter-side">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Lenke til Instagram-side">
+      <p>© 2025 ACME</p>
+      <!-- Vurder kontrast og lenker rundt ikonene for større klikkflater
+           WCAG 1.4.3 (AA) Kontrast (minimum) og 2.5.5 (AAA) målestørrelse (ikke påkrevd nivå) -->
+    </footer>
+  
+  </body>
+</html>

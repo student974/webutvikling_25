@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--
+  VIKTIG: Denne filen er BEVISST DÅRLIG for undervisning.
+  Den bryter en rekke WCAG-prinsipper og norsk UU-forskrift.
+  Oppgaven for studentene er å identifisere og forbedre feilene.
+  (Kun HTML + CSS – ingen JS.)
+-->
+<html>
+  <!-- bevisst: mangler lang-attributt på <html> -->
+  <head>
+    <meta charset="utf-8">
+    <!-- bevisst: blokkerer zoom (dårlig for UU) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Hjem</title> <!-- bevisst: vag tittel -->
+    <style>
+      /* GENERELT DÅRLIG STILARK */
+      /* bevisst: lav kontrast, små størrelser, ingen fokusmarkering */
+      html, body { width: 100%; height: 100%; }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px; /* bevisst: for liten standardtekst */
+        line-height: 1; /* bevisst: tett linjehøyde */
+        color: #9a9a9a; /* bevisst: lav kontrast mot hvit bakgrunn */
+        background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg'); /* bevisst: støyende bakgrunn */
+        background-size: cover;
+        background-attachment: fixed;
+      }
+
+      /* bevisst: semantikk-brudd – alt er div-suppe */
+      .header { height: 80px; background: rgba(255,255,255,0.6); text-align:center; text-transform: uppercase; letter-spacing: 4px; }
+      .logo { display:inline-block; width: 60px; height: 60px; background: url('https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg'); background-size: contain; background-repeat: no-repeat; vertical-align: middle; margin-top: 10px; }
+      .site-title { display:inline-block; font-size: 16px; color: #bdbdbd; vertical-align: middle; }
+
+      /* bevisst: meny kun på hover, liten trefflate, dårlig kontrast */
+      .nav { background: #eaeaea; height: 30px; overflow: hidden; }
+      .nav a { color: #c0c0c0; text-decoration: none; padding: 5px 6px; display: inline-block; font-size: 11px; }
+      .nav a:hover { background: #dcdcdc; }
+      .nav .dropdown { position: relative; display: inline-block; }
+      .nav .dropdown ul { display: none; position: absolute; left: 0; top: 100%; list-style: none; margin: 0; padding: 0; background: #f2f2f2; width: 120px; }
+      .nav .dropdown:hover ul { display: block; } /* bevisst: krever hover – tastatur utilgjengelig */
+      .nav .dropdown ul li a { display: block; padding: 4px 6px; }
+
+      /* bevisst: knapper er spans, ingen fokusstil */
+      .btn { display:inline-block; padding: 6px 8px; background:#f0f0f0; border:1px solid #e0e0e0; border-radius: 2px; cursor: pointer; }
+      .btn:focus, a:focus, input:focus { outline: none; } /* bevisst: fjerner fokusindikator */
+
+      /* bevisst: løpende/blinkende tekst (forstyrrende) */
+      .ticker { white-space: nowrap; overflow: hidden; background: rgba(255,255,0,0.3); color:#cccc00; font-weight: bold; }
+      .ticker p { display: inline-block; padding-left: 100%; animation: scroll 8s linear infinite; }
+      @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+      /* layout-tabell (dårlig praksis) */
+      .layout { width: 960px; margin: 10px auto; background: rgba(255,255,255,0.6); }
+      table.layout { border-collapse: collapse; }
+      .layout td { vertical-align: top; padding: 6px; }
+      .sidebar { width: 220px; }
+
+      /* bevisst: ekstremt lav kontrast for lenker */
+      a { color: #bdbdbd; }
+
+      /* bevisst: tekst som kun formidles med farge */
+      .status-ok { color: #00aa00; }
+      .status-bad { color: #cc0000; }
+
+      /* bevisst: bittesmå klikkflater */
+      .tiny-link { font-size: 9px; padding: 2px; border:1px solid transparent; }
+
+      /* bevisst: dupliserte id-er */
+      #sekjson { padding: 8px; }
+      #sekjson { margin-top: 8px; }
+
+      /* bevisst: hardfixet høyde, tekst kan bli avkuttet ved zoom */
+      .card { height: 140px; overflow: hidden; background: rgba(255,255,255,0.5); border: 1px solid #e3e3e3; padding: 10px; margin-bottom: 10px; }
+
+      /* bevisst: skrift på bakgrunnsbilde uten bakgrunnsfarge */
+      .hero { height: 180px; display:flex; align-items:center; justify-content:center; text-align:center; font-size: 18px; font-weight: 700; color:#e0e0e0; }
+
+      /* bevisst: formular uten labels (kun placeholders) og dårlig kontrast */
+      .form { background: rgba(255,255,255,0.5); padding: 10px; }
+      .form input, .form select, .form textarea { display:block; width: 260px; padding: 4px; margin: 6px 0; font-size: 11px; color:#a1a1a1; border:1px solid #dcdcdc; }
+      .form .required { color: #cc0000; } /* bevisst: kun farge indikerer krav */
+      .form .help { font-size: 10px; color: #bbbbbb; }
+      .form .fake-submit { background:#efefef; border:1px solid #e0e0e0; padding: 6px 10px; display:inline-block; }
+
+      /* bevisst: positiv tabindex skaper rar rekkefølge */
+      .weird-order [tabindex] { border: 1px dashed transparent; }
+
+      /* bevisst: lav kontrast på skjemafeil */
+      .error { color:#ff9999; }
+
+      /* bevisst: tekst i store bokstaver og sentrert – vanskelig lesbarhet */
+      .shout { text-transform: uppercase; text-align:center; letter-spacing: 3px; }
+
+      /* bevisst: alt for smal linjelengde og justified */
+      .narrow { width: 180px; text-align: justify; }
+
+      /* print-uvennlig */
+      @media print { body { background: #000; color:#000; } }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <span class="logo" aria-hidden="true"></span> <!-- bevisst: viktig info kun i bilde uten tekstalternativ -->
+      <span class="site-title">Min side</span>
+    </div>
+
+    <div class="nav" role="navigation"> <!-- bevisst: upresist role og ingen semantisk <nav> -->
+      <a href="#">Hjem</a>
+      <a href="#">Om oss</a>
+      <div class="dropdown">
+        <a href="#">Tjenester</a>
+        <ul>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Utvikling</a></li>
+          <li><a href="#">Konsulent</a></li>
+        </ul>
+      </div>
+      <a href="#">Kontakt</a>
+    </div>
+
+    <div class="ticker">
+      <p>Viktig beskjed: Les dette! Klikk her! Klikk her! Klikk her! Veldig viktig! ✨</p>
+    </div>
+
+    <table class="layout" role="presentation"> <!-- bevisst: tabell for layout -->
+      <tr>
+        <td class="sidebar">
+          <div class="card" id="sekjson">
+            <h4>Nyheter</h4> <!-- bevisst: hopper over h1/h2/h3 -->
+            <p>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg" alt=""> <!-- bevisst: tom alt på meningsbærende bilde -->
+              <a class="tiny-link" href="#">Klikk her</a> for å lese mer om ting.
+            </p>
+            <p class="status-ok">Tilgjengelig</p>
+            <p class="status-bad">Utilgjengelig</p>
+          </div>
+
+          <div class="card">
+            <h4>Språk</h4>
+            <p>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Norway.svg" alt="no"> <!-- bevisst: alt «no» er ikke beskrivende -->
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Flag_of_the_United_Kingdom.svg" alt="en">
+            </p>
+          </div>
+        </td>
+        <td>
+          <div class="hero">
+            VELKOMMEN TIL DEN BESTE SIDEN NOENSINNE (LES VIKTIG TEKST HER OVER BAKGRUNNSBILDE)
+          </div>
+
+          <div class="card shout">
+            <div class="narrow">
+              Denne teksten er veldig vanskelig å lese fordi den er smal, i store bokstaver og har lav kontrast. Den er også justert med blokkjustering som kan skape store mellomrom i linjene. Klikk her for mer info.
+            </div>
+          </div>
+
+          <div class="card form">
+            <h4>Kontakt oss</h4>
+            <!-- bevisst: ingen <label> og kun placeholder, dupliserte id-er, dårlig kontrast, farge som eneste signal -->
+            <input type="text" id="navn" placeholder="Navn*">
+            <input type="email" id="navn" placeholder="E-post*"> <!-- bevisst: duplisert id -->
+            <input type="tel" placeholder="Telefon">
+            <select>
+              <option>Velg tema*</option>
+              <option>Bestilling</option>
+              <option>Support</option>
+            </select>
+            <textarea rows="3" placeholder="Melding..."></textarea>
+            <p class="help">Felt merket med <span class="required">rød farge</span> er obligatoriske.</p>
+            <p class="error">skjemaet er feil utfylt</p> <!-- bevisst: lav kontrast på feilmelding, små bokstaver -->
+            <span class="fake-submit" role="button" tabindex="5">Send</span> <!-- bevisst: span som knapp, positiv tabindex -->
+          </div>
+
+          <div class="card weird-order">
+            <h4>Mer innhold</h4>
+            <p>
+              <a href="#" tabindex="3">Les mer</a> |
+              <a href="#" tabindex="1">Klikk her</a> |
+              <a href="#" tabindex="2">Trykk her</a>
+            </p>
+            <p>
+              <span class="btn" tabindex="4">Primær handling</span>
+            </p>
+          </div>
+
+          <div class="card">
+            <h4>Tabell uten overskrifter</h4>
+            <table border="1" width="100%">
+              <tr><td>1</td><td>2</td><td>3</td></tr>
+              <tr><td>4</td><td>5</td><td>6</td></tr>
+              <tr><td>7</td><td>8</td><td>9</td></tr>
+            </table>
+          </div>
+
+          <div class="card">
+            <h4>Masse lenker med samme tekst</h4>
+            <ul>
+              <li><a href="#">Les mer</a></li>
+              <li><a href="#">Les mer</a></li>
+              <li><a href="#">Les mer</a></li>
+              <li><a href="#">Les mer</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div style="text-align:center; padding: 10px; background: rgba(255,255,255,0.6)">
+      <!-- bevisst: kontaktinfo kun i bilde uten alt-tekst -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Facebook_icon.svg">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Twitter_logo.svg">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+      <p style="font-size:10px; color:#bfbfbf">© 2025 ACME</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+/* -----------------------------------------------------------
+   KOMMENTAR-KONVENSJON
+   - Etter hver deklarasjon:  /* Egenskap: hva gjør den | Verdi: hva betyr den *\/
+   ----------------------------------------------------------- */
+
+   @import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Lexend:wght@100..900&family=Poiret+One&display=swap'); /* Egenskap: importerer ekstern font | Verdi: URL til Google Fonts med valgte familier/vekter */
+
+   /* Root-variabler (kan brukes med var(--navn)) */
+   :root{
+     --basic-grey: #efefefef; /* Egenskap: definerer CSS-variabel | Verdi: heksadesimal farge med alfa (lys grå, 94% opak) */
+     --basic-red:  #6a0404;   /* Egenskap: definerer CSS-variabel | Verdi: heksadesimal farge (dyp rød) */
+   }
+   
+   /* Global box-modell */
+   *{
+     box-sizing: border-box; /* Egenskap: beregningsmodell for bredde/høyde | Verdi: inkluderer padding og border i total bredde/høyde */
+   }
+   
+   /* Grunnstil for dokumentet */
+   body{
+     font-family: "Funnel Sans", sans-serif; /* Egenskap: tekstfont | Verdi: primær webfont med sans-serif fallback */
+     margin: 0;                               /* Egenskap: ytre marg | Verdi: fjerner default margin fra body */
+   }
+   
+   /* Overordnet grid-beholder */
+   #page-container{
+     display: grid;                         /* Egenskap: layout-modell | Verdi: aktiverer CSS Grid */
+     grid-template-columns: 1fr;            /* Egenskap: kolonnestruktur | Verdi: én fleksibel kolonne (1 fraksjonsenhet) */
+     grid-template-rows: auto auto auto auto auto; /* Egenskap: radstruktur | Verdi: fem rader som følger innholdshøyde */
+   }
+   
+   /* ====== GLOBAL HEADER ====== */
+   #global-header{
+     display: flex;                 /* Egenskap: layout-modell | Verdi: aktiverer flexbox */
+     justify-content: space-between;/* Egenskap: horisontal justering | Verdi: maks avstand mellom første/siste element */
+     align-items: center;           /* Egenskap: vertikal justering | Verdi: sentrerer barna vertikalt i høyden */
+     padding: 1rem;                 /* Egenskap: indre avstand | Verdi: 1 rem rundt innholdet */
+     grid-column: 1 / 2;            /* Egenskap: grid-plassering (kolonner) | Verdi: spenner fra kolonne 1 til før 2 (dvs. kolonne 1) */
+     grid-row: 1 / 2;               /* Egenskap: grid-plassering (rader) | Verdi: plasseres i rad 1 */
+   }
+   
+   /* Navigasjonsliste uten standard listestil */
+   #global-header nav ul{
+     padding: 0; /* Egenskap: indre avstand | Verdi: fjerner standard padding på ul */
+     margin: 0;  /* Egenskap: ytre marg | Verdi: fjerner standard margin på ul */
+   }
+   #global-header nav ul li{
+     list-style: none;     /* Egenskap: punktoppsett | Verdi: ingen punkt/markør */
+     display: inline-block;/* Egenskap: visningsmodus | Verdi: inline med blokk-egenskaper (kan få bredde/høyde) */
+   }
+   
+   /* Hamburgerikon (mobil) */
+   .fa-bars{
+     display: inline-block; /* Egenskap: visningsmodus | Verdi: inline med blokk-egenskaper */
+     font-size: 30px;       /* Egenskap: tekststørrelse | Verdi: 30 piksler */
+     color: var(--basic-red);/* Egenskap: tekssfarge | Verdi: bruker rød variabel fra :root */
+     font-weight: 600;      /* Egenskap: skriftvekt | Verdi: semibold */
+   }
+   
+   /* Logo-lenke */
+   #mainlogo{
+     font-size: 30px;                       /* Egenskap: tekststørrelse | Verdi: 30 piksler for tydelig logo */
+     font-weight: 900;                      /* Egenskap: skriftvekt | Verdi: svart/ekstra fet */
+     font-family: Arial, Helvetica, sans-serif; /* Egenskap: fontfallback | Verdi: systemnære sans-serif alternativer */
+     text-decoration: none;                 /* Egenskap: dekorasjon | Verdi: fjerner understrek */
+     color: #4d4a4a;                        /* Egenskap: tekssfarge | Verdi: mørk grå for mykere kontrast */
+   }
+   
+   /* Globale lenker */
+   a{
+     color: #000;               /* Egenskap: tekssfarge | Verdi: svart */
+     text-decoration: none;     /* Egenskap: dekorasjon | Verdi: ingen understrek som default */
+   }
+   
+   /* HERO-seksjon med bakgrunnsbilde */
+   .deal-section{
+     background-image: url("https://picsum.photos/800/500?grayscale"); /* Egenskap: bakgrunnsbilde | Verdi: ekstern placeholder-URL (gråskala) */
+     background-repeat: no-repeat;  /* Egenskap: repetisjon | Verdi: ikke gjenta bildet */
+     background-size: cover;        /* Egenskap: skalering | Verdi: fyll beholderen uten å endre forhold */
+     background-position: bottom;   /* Egenskap: posisjon | Verdi: forankre bildet nederst */
+     background-color: var(--basic-grey); /* Egenskap: bakgrunnsfarge | Verdi: fallback-farge fra variabel */
+     padding: 1rem;                 /* Egenskap: indre avstand | Verdi: 1 rem rundt innhold */
+     position: relative;            /* Egenskap: posisjonering | Verdi: referanse for eventuelle absolutte barn */
+     height: 50vh;                  /* Egenskap: høyde | Verdi: halvparten av viewport-høyden */
+     min-height: 200px;             /* Egenskap: minste høyde | Verdi: aldri lavere enn 200px */
+     grid-column: 1 / 2;            /* Egenskap: grid-plassering (kolonner) | Verdi: kolonne 1 */
+     grid-row: 2 / 3;               /* Egenskap: grid-plassering (rader) | Verdi: rad 2 */
+   }
+   
+   /* ====== HOVEDINNHOLD ====== */
+   main{
+     max-width: 1200px; /* Egenskap: maksimal bredde | Verdi: ikke bredere enn 1200px for lesbarhet */
+     width: 100%;       /* Egenskap: bredde | Verdi: fyll tilgjengelig bredde opp til max-width */
+     margin: 1rem auto; /* Egenskap: ytre marg | Verdi: vertikalt 1 rem, horisontalt auto (sentrering) */
+     grid-column: 1 / 2;/* Egenskap: grid-plassering (kolonner) | Verdi: kolonne 1 */
+     grid-row: 3 / 4;   /* Egenskap: grid-plassering (rader) | Verdi: rad 3 */
+   }
+   
+   /* Seksjonstitler og artikkel-sentrering */
+   main section h2{
+     text-align: center; /* Egenskap: tekstjustering | Verdi: senter for overskrifter */
+   }
+   main section article{
+     margin: 0 auto;     /* Egenskap: ytre marg | Verdi: auto horisontalt for sentrering når bredde er begrenset */
+   }
+   
+   /* Artikkelkort */
+   article{
+     margin: 1rem 0;          /* Egenskap: ytre marg | Verdi: 1 rem topp/bunn, 0 sider */
+     border: 1px solid #efefef;/* Egenskap: kantlinje | Verdi: 1px heltrukken lys grå */
+     width: 31%;              /* Egenskap: bredde | Verdi: ca. 3 per rad i flex-layout m/ gap */
+     min-width: 250px;        /* Egenskap: minste bredde | Verdi: ikke smalere enn 250px */
+     padding: 1rem;           /* Egenskap: indre avstand | Verdi: 1 rem rundt innhold */
+     flex-grow: 1;            /* Egenskap: vekstfaktor i flex | Verdi: kan vokse for å fylle plass */
+     max-width: 800px;        /* Egenskap: maks bredde | Verdi: ikke bredere enn 800px */
+   }
+   
+   /* Bilde i artikkel */
+   article img{
+     width: 100%; /* Egenskap: bredde | Verdi: fyller foreldres bredde */
+     height: auto;/* Egenskap: høyde | Verdi: behold proporsjon ved skalering */
+   }
+   
+   /* Kategorikort (variant) */
+   .category-card{
+     width: 33%;   /* Egenskap: bredde | Verdi: tredjedel av tilgjengelig plass */
+     flex-grow: 1; /* Egenskap: vekstfaktor | Verdi: kan utvide seg ved ekstra plass */
+   }
+   
+   /* Primærknapp/lenke */
+   .btn{
+     display: inline-block; /* Egenskap: visningsmodus | Verdi: inline + blokk-egenskaper */
+     background-color: #000;/* Egenskap: bakgrunn | Verdi: svart for høy kontrast */
+     color: #fff;           /* Egenskap: tekssfarge | Verdi: hvit for kontrast mot svart bakgrunn */
+     padding: 1rem;         /* Egenskap: indre avstand | Verdi: romslig klikk/touch-flate */
+     border: none;          /* Egenskap: kantlinje | Verdi: ingen ramme */
+   }
+   .btn:hover,
+   .btn:focus{
+     filter: brightness(1.1);           /* Egenskap: grafisk filter | Verdi: øker lysstyrke 10% ved interaksjon */
+     outline: 2px solid currentColor;   /* Egenskap: fokusramme | Verdi: 2px i gjeldende tekstfarge */
+     outline-offset: 2px;               /* Egenskap: konturavstand | Verdi: flytt outline ut 2px for synlighet */
+   }
+   
+   /* Sidekolonne / ASIDE */
+   .side-container{
+     background-color: var(--basic-grey); /* Egenskap: bakgrunn | Verdi: lys grå fra variabel */
+     padding: 1rem;                       /* Egenskap: indre avstand | Verdi: 1 rem */
+     grid-column: 1 / 2;                  /* Egenskap: grid-plassering (kolonner) | Verdi: kolonne 1 */
+     grid-row: 4 / 5;                     /* Egenskap: grid-plassering (rader) | Verdi: rad 4 */
+   }
+   .side-container form input{
+     display: block; /* Egenskap: visningsmodus | Verdi: blokk (opptar hele linja) */
+     padding: 1rem;  /* Egenskap: indre avstand | Verdi: 1 rem for god trefflate */
+     margin: 0.4rem 0; /* Egenskap: ytre marg | Verdi: 0.4 rem topp/bunn, 0 sider */
+   }
+   
+   /* Avkrysningsgruppe */
+   .age-check{
+     display: flex;        /* Egenskap: layout-modell | Verdi: flex for horisontal rad */
+     align-items: center;  /* Egenskap: vertikal justering | Verdi: sentrer kontroller/labels vertikalt */
+     gap: 1rem;            /* Egenskap: mellomrom | Verdi: 1 rem mellom barna */
+   }
+   
+   /* Footer */
+   footer{
+     background-color: #212324; /* Egenskap: bakgrunn | Verdi: mørk grå/svart nyanse */
+     color: #fff;               /* Egenskap: tekssfarge | Verdi: hvit for kontrast */
+     padding: 1rem;             /* Egenskap: indre avstand | Verdi: 1 rem */
+     min-height: 150px;         /* Egenskap: minste høyde | Verdi: minst 150px høy */
+     grid-column: 1 / 2;        /* Egenskap: grid-plassering (kolonner) | Verdi: kolonne 1 */
+     grid-row: 5 / 6;           /* Egenskap: grid-plassering (rader) | Verdi: rad 5 */
+   }
+   
+   /* ====== MEDIA QUERY: >= 600px ====== */
+   @media only screen and (min-width: 600px){ /* Egenskap: medieregel | Verdi: gjelder skjermer fra 600px bredde */
+   
+     #page-container{
+       grid-template-columns: 1fr 1fr 0.5fr; /* Egenskap: kolonnestruktur | Verdi: to like + en halv bredde (sidebar) */
+       grid-template-rows: repeat(4, auto);  /* Egenskap: radstruktur | Verdi: 4 rader med innholdshøyde */
+     }
+   
+     #global-header{
+       grid-column: 1 / 4; /* Egenskap: grid-plassering | Verdi: spenner over alle tre kolonner (1 til før 4) */
+     }
+   
+     .fa-bars{
+       display: none; /* Egenskap: visningsmodus | Verdi: skjul hamburger på større skjermer */
+     }
+   
+     .deal-section{
+       grid-column: 1 / 4; /* Egenskap: grid-plassering | Verdi: hero i full bredde */
+     }
+   
+     main{
+       grid-column: 1 / 3; /* Egenskap: grid-plassering | Verdi: main over de to første kolonnene */
+     }
+   
+     article{
+       margin: 1rem 0;           /* Egenskap: ytre marg | Verdi: 1 rem topp/bunn */
+       border: 1px solid #efefef;/* Egenskap: kantlinje | Verdi: tynn lys grå */
+       width: 31%;               /* Egenskap: bredde | Verdi: ~3 kort per rad i flex-layout */
+       min-width: 250px;         /* Egenskap: minste bredde | Verdi: 250px */
+       padding: 1rem;            /* Egenskap: indre avstand | Verdi: 1 rem */
+       flex-grow: 1;             /* Egenskap: vekstfaktor | Verdi: kan vokse for å fylle plass */
+       max-width: 800px;         /* Egenskap: maks bredde | Verdi: 800px */
+     }
+   
+     .category-card{
+       width: 33%;   /* Egenskap: bredde | Verdi: tredjedel på større skjermer */
+       flex-grow: 0; /* Egenskap: vekstfaktor | Verdi: ikke vokse utover satt bredde */
+     }
+   
+     .grow-1{
+       flex-grow: 1; /* Egenskap: vekstfaktor | Verdi: standard vekst (tar noe ekstra plass) */
+     }
+   
+     .grow-2{
+       flex-grow: 2; /* Egenskap: vekstfaktor | Verdi: vokser dobbelt så mye som grow-1 */
+     }
+   
+     .side-container{
+       grid-column: 3 / 4; /* Egenskap: grid-plassering | Verdi: flytt til høyre kolonne */
+       grid-row: 3 / 4;    /* Egenskap: grid-plassering | Verdi: rad 3 */
+     }
+   
+     footer{
+       grid-column: 1 / 4; /* Egenskap: grid-plassering | Verdi: footer i full bredde */
+       grid-row: 4 / 5;    /* Egenskap: grid-plassering | Verdi: nederst i gridet */
+     }
+   }
+   
+   /* ====== Fleksibelt kortoppsett ====== */
+   .flex-container{
+     display: flex;        /* Egenskap: layout-modell | Verdi: flex-rad som kan wrappe */
+     flex-wrap: wrap;      /* Egenskap: linjebryting | Verdi: barna kan bryte til ny rad */
+     gap: 0.5rem;          /* Egenskap: mellomrom | Verdi: 0.5 rem mellom rader/kolonner */
+     justify-content: center; /* Egenskap: horisontal justering | Verdi: sentrer kort i raden */
+   }
+   .flex-container h2{
+     width: 100%; /* Egenskap: bredde | Verdi: overskrift strekker seg full bredde over kort */
+   }
+   .flex-container article{
+     min-width: 200px !important; /* Egenskap: minste bredde | Verdi: ikke smalere enn 200px; !important tvinger prioritet */
+     margin: 0;                   /* Egenskap: ytre marg | Verdi: null for tett grid med gap-styring */
+   }
+   
+   /* Variant med venstrejustert og mer voksende kort */
+   section.flex-grow{
+     justify-content: flex-start; /* Egenskap: horisontal justering | Verdi: start fra venstre kant */
+   }
+   
+   /* (Valgfri) Eksempel på spesifikk kortbredde i flex-grow-seksjonen.
+      Avkommenter om du trenger fast prosentbredde på artikler her. */
+   /*
+   section.flex-grow article{
+     max-width: 900px;  /* Egenskap: maks bredde | Verdi: ikke bredere enn 900px *\/
+     min-width: 100px;  /* Egenskap: minste bredde | Verdi: ikke smalere enn 100px *\/
+     width: 31%;        /* Egenskap: bredde | Verdi: ~tre kort per rad med gap *\/
+   }
+   section.flex-grow article.grow-1{
+     flex-grow: 2;      /* Egenskap: vekstfaktor | Verdi: vokser mer enn standard *\/
+   }
+   */
+   
+   /* Nyttige util-klasser for vekst (kan brukes hvor som helst i flex) */
+   /* .grow-1 { flex-grow: 2; }  /\* Egenskap: vekstfaktor | Verdi: dobbel standard \*\/
+      .grow-2 { flex-grow: 3; }  /\* Egenskap: vekstfaktor | Verdi: trippel standard \*\/ */
+   

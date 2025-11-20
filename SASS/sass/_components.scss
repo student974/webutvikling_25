@@ -1,0 +1,115 @@
+// =========================
+// Import
+// =========================
+
+// @use 'colors'
+// Hva: Importerer SCSS-modulen som eksporterer fargevariabler.
+// Hvorfor: Gir navne­rommet "colors." slik at variablene er tydelige og kollisjonsfrie.
+// Hvordan: Tilgang skjer via prefiks, f.eks. colors.$lightGrey.
+@use 'colors';
+
+// =========================
+// Mixin: colorTemplate
+// =========================
+// Hva: Et gjenbrukbart mønster for å sette bakgrunn, kant og tekstfarge på komponenter.
+// Hvorfor: Unngår duplisering når flere varianter deler samme struktur men har ulike farger.
+// Hvordan: Tar inn tre parametre og mapper dem til CSS-egenskapene nedenfor.
+@mixin colorTemplate($BGcolor, $borderColor, $textColor){
+    border-color: $borderColor;     // Hva: Setter kantfargen.
+                                    // Hvorfor: Skaper tydelig avgrensning mot bakgrunnen.
+                                    // Hvordan: Bruker mixin-parameteren $borderColor.
+
+    color: $textColor;              // Hva: Setter tekstfargen.
+                                    // Hvorfor: Sikrer lesbarhet og semantisk samsvar med status.
+                                    // Hvordan: Bruker mixin-parameteren $textColor.
+
+    background-color: $BGcolor;     // Hva: Setter bakgrunnsfargen.
+                                    // Hvorfor: Formidler status/tema visuelt (success/warning/error).
+                                    // Hvordan: Bruker mixin-parameteren $BGcolor.
+}
+
+// =========================
+// Placeholder: %box-shadow
+// =========================
+// Hva: En placeholder-selektor for skygge-stil som kan @extend-es inn i andre klasser.
+// Hvorfor: DRY—unngå å kopiere samme box-shadow flere steder.
+// Hvordan: Brukes via @extend %box-shadow i ønskede komponenter.
+%box-shadow{
+    box-shadow: 10px 10px 20px colors.$lightGrey;  // Hva: Myk skygge basert på lys grå.
+// Hvorfor: Løfter kort visuelt fra bakgrunnen.
+// Hvordan: Offset (10px, 10px) med blur 20px og farge fra colors-modulen.
+}
+
+// =========================
+// Komponent: .card
+// =========================
+// Hva: Grunnkort med ramme, padding, fleksibel bredde og avrundede hjørner.
+// Hvorfor: Et nøytralt basepattern som andre varianter kan arve/utvide.
+// Hvordan: Setter layout/visuelle baseverdier og @extend-er skygge-placeholderen.
+.card{
+    border: 1px solid colors.$lightGrey;  // Hva: Diskré kant.
+                                           // Hvorfor: Definerer kortets kontur uten å dominere.
+                                           // Hvordan: Bruker farge fra colors-modulen.
+
+    padding: 1rem;                         // Hva: Indre luft.
+                                           // Hvorfor: Forbedrer lesbarheten av innholdet.
+                                           // Hvordan: Konsistent spacing-standard.
+
+    flex: 1 1 calc(31% - 20px);            // Hva: Fleksibel kortbredde i en flex-rad.
+// Hvorfor: Lar flere kort bryte og flyte pent i rader (ca. tre per rad med gap).
+// Hvordan: grow=1, shrink=1, basis ~31% minus mellomrom.
+
+    min-width: 250px;                      // Hva: Minstebredde.
+// Hvorfor: Hindrer at kort blir for smale på små skjermer.
+// Hvordan: Setter en praktisk nedre grense.
+
+    border-radius: 5px;                    // Hva: Svakt avrundede hjørner.
+// Hvorfor: Gir et mykere, mer moderne uttrykk.
+// Hvordan: Fast radiusverdi.
+
+    @extend %box-shadow;                   // Hva: Legger til standard skygge.
+// Hvorfor: Gjenbruk av definert stil uten duplisering.
+// Hvordan: SCSS @extend på placeholder.
+}
+
+// =========================
+// Varianter: .success / .warning / .error
+// =========================
+// Hva: Statusvarianter av .card med farger for semantikk.
+// Hvorfor: Kommuniserer tilstand (vellykket, advarsel, feil) konsekvent.
+// Hvordan: Arver .card og injiserer farger via colorTemplate-mixinen.
+
+// .success
+.success{
+    @extend .card;  // Hva: Arver base-stilene fra .card.
+                    // Hvorfor: DRY—beholder konsistent struktur.
+                    // Hvordan: SCSS @extend mellom klasser.
+
+    @include colorTemplate(
+        colors.$succsessBGcolor,           // Hva: Bakgrunn (success).
+        colors.$succsessBorderColor,       // Hva: Kant (success).
+        colors.$succsessTextColor          // Hva: Tekst (success).
+    );                                     // Hvordan: Inkluderer mixin med colors-modulens variabler.
+}
+
+// .warning
+.warning{
+    @extend .card;
+
+    @include colorTemplate(
+        colors.$warningBGcolor,            // Hva: Bakgrunn (warning).
+        colors.$warningBorderColor,        // Hva: Kant (warning).
+        colors.$warningTextColor           // Hva: Tekst (warning).
+    );
+}
+
+// .error
+.error{
+    @extend .card;
+
+    @include colorTemplate(
+        colors.$errorBGcolor,              // Hva: Bakgrunn (error).
+        colors.$errorBorderColor,          // Hva: Kant (error).
+        colors.$errorTextColor             // Hva: Tekst (error).
+    );
+}

@@ -1,0 +1,145 @@
+// =========================
+// Mixin: alterLayout
+// Hva: Setter opp et CSS Grid-layout med kolonner, rader og mellomrom.
+// Hvorfor: Gjenbrukbart oppsett for ulike grid-konfigurasjoner uten å duplisere kode.
+// Hvordan: Tar inn $columns og $rows og mapper dem til grid-egenskaper.
+// =========================
+@mixin alterLayout($columns, $rows){
+    display: grid;                         // Hva: Aktiverer CSS Grid.
+                                           // Hvorfor: Grid gir presis kontroll på layout.
+                                           // Hvordan: Setter display til grid på elementet.
+
+    grid-template-columns: $columns;       // Hva: Definerer kolonneoppsettet.
+                                           // Hvorfor: Gjør det mulig å variere kolonnebredder dynamisk.
+                                           // Hvordan: Bruker mixin-parameteren $columns.
+
+    grid-template-rows: $rows;             // Hva: Definerer radoppsettet.
+                                           // Hvorfor: Gir kontroll på høyden til radene.
+                                           // Hvordan: Bruker mixin-parameteren $rows.
+
+    gap: 1rem;                             // Hva: Avstand mellom grid-celler.
+                                           // Hvorfor: Skaper visuelt luft og lesbarhet.
+                                           // Hvordan: Enhetlig mellomrom i både rader og kolonner.
+}
+
+// =========================
+// Mixin: gridPlacement
+// Hva: Plasserer et element i gridet.
+// Hvorfor: Forenkler og standardiserer plassering med grid-column og grid-row.
+// Hvordan: Tar inn kolonne- og radområder som streng/verdi.
+// =========================
+@mixin gridPlacement ($col, $row){
+    grid-column: #{$col};                  // Hva: Angir kolonneområde (start/slutt).
+                                           // Hvorfor: Bestemmer elementets horisontale posisjon/utstrekning.
+                                           // Hvordan: Interpolerer verdien inn i CSS.
+
+    grid-row: #{$row};                     // Hva: Angir radområde (start/slutt).
+                                           // Hvorfor: Bestemmer elementets vertikale posisjon/utstrekning.
+                                           // Hvordan: Interpolerer verdien inn i CSS.
+}
+
+// =========================
+// Selektor: #grid-layout
+// Hva: Container som bruker grid-oppsettet fra alterLayout.
+// Hvorfor: Sentraliserer layoutstyring for underliggende artikler.
+// Hvordan: Inkluderer mixin med 2 kolonner og 2 rader.
+// =========================
+#grid-layout{
+    @include alterLayout(1fr 1fr, auto auto);  // Hva: 2 like brede kolonner, 2 rader med auto-høyde.
+                                               // Hvorfor: En enkel 2x2-grid for artikler.
+                                               // Hvordan: Kaller mixin med ønskede verdier.
+
+    // Barn: article
+    // Hva: Individuell plassering av hvert article-element i gridet.
+    // Hvorfor: Gir spesifikk kontroll per element uten ekstra klasser.
+    // Hvordan: Bruker :nth-child for målretting.
+    article{
+
+        // Første article
+        &:nth-child(1){
+            @include gridPlacement('1/2', '1/2');  // Hva: Plasseres i kolonne 1 (til før 2) og rad 1 (til før 2).
+                                                   // Hvorfor: Gir første artikkel øverste venstre posisjon.
+                                                   // Hvordan: Bruker gridPlacement-mixin med eksplisitte områder.
+        }
+
+        // Andre article
+        &:nth-child(2){
+            grid-column: 2/ 3;                    // Hva: Kolonneområde fra 2 til 3.
+                                                  // Hvorfor: Plasserer elementet i høyre kolonne på øverste rad.
+                                                  // Hvordan: Direkte grid-egenskap uten mixin (funksjonelt likt).
+
+            grid-row: 1 / 2;                      // Hva: Radområde fra 1 til 2.
+                                                  // Hvorfor: Holder elementet på øverste rad.
+                                                  // Hvordan: Direkte deklarasjon.
+        }
+
+        // Tredje article
+        &:nth-child(3){
+            grid-column: span 2;                  // Hva: Spenner over to kolonner.
+                                                  // Hvorfor: Lar elementet fylle hele bredden under de to første.
+                                                  // Hvordan: Bruker 'span' for å strekke over 2 kolonner fra sin start.
+
+            grid-row: 2 / 3;                      // Hva: Radområde fra 2 til 3.
+                                                  // Hvorfor: Plasserer elementet på andre rad.
+                                                  // Hvordan: Direkte deklarasjon av rad-område.
+        }
+    }
+}
+
+// =========================
+/* Layout-hjelpeklasser */
+// =========================
+
+// .main-container
+// Hva: En sentrert, responsiv container med maks-bredde.
+// Hvorfor: Begrense linjelengde og skape konsistent innholdsbredde.
+// Hvordan: Max-bredde, full bredde innenfor, automatisk margin og horisontal padding.
+.main-container{
+    max-width: 1200px;                     // Hva: Øvre grense for bredde.
+                                           // Hvorfor: Forbedrer lesbarhet på store skjermer.
+                                           // Hvordan: Setter en fast maksverdi.
+
+    width: 100%;                           // Hva: Lar container fylle tilgjengelig plass inntil max.
+                                           // Hvorfor: Responsiv bredde.
+                                           // Hvordan: Prosentbasert bredde.
+
+    margin: 0 auto;                        // Hva: Sentrerer horisontalt.
+                                           // Hvorfor: Visuelt balansert layout.
+                                           // Hvordan: Auto-marg på venstre/høyre.
+
+    padding: 0 15px;                       // Hva: Horisontal innrykk.
+                                           // Hvorfor: Hindrer innholdet i å klebe til kanten.
+                                           // Hvordan: 15px på venstre/høyre.
+}
+
+// .flex
+// Hva: Grunnleggende fleksbeholder for horisontal/vertikal flyt.
+// Hvorfor: Raskt å bygge fleksible rader/kolonner med mellomrom.
+// Hvordan: display:flex, tillat wrapping og gap.
+.flex{
+    display: flex;                         // Hva: Aktiverer Flexbox.
+                                           // Hvorfor: Enkel justering og fordeling av elementer.
+                                           // Hvordan: Setter flex-kontekst.
+
+    flex-wrap: wrap;                       // Hva: Tillater linjebryting.
+                                           // Hvorfor: Gjør layout mer responsiv ved liten bredde.
+                                           // Hvordan: Elementer hopper til neste linje ved behov.
+
+    gap: 1rem;                             // Hva: Avstand mellom fleks-elementer.
+                                           // Hvorfor: Konsistent spacing uten margin-hacks.
+                                           // Hvordan: Native 'gap' for flex-containere.
+}
+
+// .flex-column
+// Hva: Vertikal variant av .flex.
+// Hvorfor: Gjenbruker basisoppsettet og endrer kun retning.
+// Hvordan: @extend for å arve, og setter flex-direction til column.
+.flex-column{
+    @extend .flex;                         // Hva: Arver regler fra .flex.
+                                           // Hvorfor: Unngår duplisering og holder stilene konsistente.
+                                           // Hvordan: SASS @extend slår sammen selektorene ved kompilering.
+
+    flex-direction: column;                // Hva: Stabler barn vertikalt.
+                                           // Hvorfor: Kolonnelayout er ofte nødvendig for formularer og lister.
+                                           // Hvordan: Setter akse fra rad (default) til kolonne.
+}
